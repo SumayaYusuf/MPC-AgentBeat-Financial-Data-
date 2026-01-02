@@ -1,0 +1,39 @@
+Overall Score (0–100)
+├─ 1. Fundamentals (30)
+│   ├─ 1.1 Earnings/Quality (P/E, P/B, ROE, Cash Flow) (12)
+│   ├─ 1.2 Dividend / Yield Profile (4)
+│   └─ 1.3 Valuation vs. Benchmarks (12)
+├─ 2. Performance & Risk-Adjusted Return (25)
+│   ├─ 2.1 Absolute Return (NAV) (8)
+│   ├─ 2.2 Rolling Relative Return vs Bench (Russell 2000 / Spliced) (8)
+│   └─ 2.3 Risk-Adjusted (Sharpe / Std Dev / Beta) (9)
+├─ 3. Liquidity & Trading (15)
+│   ├─ 3.1 AUM Size (7)
+│   ├─ 3.2 Avg Daily Volume & Market Price vs NAV (4)
+│   └─ 3.3 Portfolio Turnover + Index Reconstitution Impact (4)
+├─ 4. Cost & Tax Efficiency (12)
+│   ├─ 4.1 Expense Ratio (6)
+│   └─ 4.2 Turnover-tax / Securities lending offset (6)
+├─ 5. Diversification & Concentration (10)
+│   ├─ 5.1 Number of Holdings (4)
+│   ├─ 5.2 Top 10 Weight / Single-stock max (3)
+│   └─ 5.3 Sector Concentration (3)
+└─ 6. Strategy / Governance Risks (8)
+    ├─ 6.1 Index Methodology Risk (3)
+    ├─ 6.2 Manager / Sponsor Quality (2)
+    └─ 6.3 Operational / Accounting transparency (3)
+
+
+
+# FUNDAMENTALS - 10 Questions (Numerical Output)
+# 1.1 Earnings/Quality (12 points)
+# Q1: What is the P/E ratio?
+# Q2: What is the P/B ratio?
+# Q3: What is the ROE (%)?
+# Q4: How many ETFs have P/E < 20?
+# Q5: How many ETFs have P/E between 20-30?
+# Q6: How many ETFs have P/E > 30?
+# Q7: How many ETFs have ROE > 15%?
+# Q8: What is the average P/E across all ETFs?
+# Q9: What is the average ROE across all ETFs?
+# Q10: Which ETF has the lowest P/E?
