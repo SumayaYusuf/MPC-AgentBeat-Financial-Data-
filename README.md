@@ -1,37 +1,31 @@
 Finance Agent 
 
-This project builds on the AgentBeats Tutorial framework https://github.com/RDI-Foundation/agentbeats-tutorial
+Overview
+An AI agent that analyzes Vanguard ETF data and answers questions about fund attributes. The agent is evaluated against 30 ground truth questions to measure accuracy.
+Data Layer
 
-It's an ETF evaluation tool using Google's Gemini that scores Vanguard ETF data based on a custom evaluation metric 
+Source: 7 Vanguard ETF JSON files (MUNY, VAW, VEA, VIG, VIGI, VTG, VV)
+Extraction: Data_extraction.py parses nested JSON and extracts 15 attributes
+Note: MUNY and VTG are bond/sector funds with null PE, PB, and ROE values
 
-Data_extraction.py
-Pulls data from ETF JSON files and organizes it by attributes. Things like P/E ratio, P/B ratio, ROE, dividend yield, expense ratios, and more. The JSON files contain raw Vanguard ETF data, and this script makes it usable by extracting just the fields we care about.
+15 Extracted Attributes
 
-Finance_Agent.py
-This is the Gemini-powered agent. It takes the extracted ETF data and answers 15 questions about fundamentals. The agent runs as a server on port 9009 and waits for requests. When you ask it something like "How many ETFs have P/E < 20?", it looks at the data and responds.
+Fundamentals: pe, pb, roe, div, distfreq
+Cost: exp, fee
+Liquidity: turn, aum
+Diversification: hold
+Performance: r1y, r3y, r5y, sharpe, beta
 
-receive.py
-A simple client that talks to the agent. It sends the evaluation questions to the agent running on port 9009 and prints back whatever Gemini returns. This is how you actually interact with the agent once it's running.
+Agent Layer
 
-scorer.py
-The ground truth checker. It calculates the correct answers by going through the actual ETF data manually. You can use this to see if the agent is giving accurate responses or just making things up.
+Green_Agent.py runs on port 9009
+Uses Google Gemini LLM
+Receives questions via A2A protocol (JSON-RPC)
+ETF data is embedded in the system prompt
 
-** This will be out of 100 currently only working on one of the metrics
+Evaluation Layer
 
-The Evaluation Metric: 
-The agent scores ETFs on fundamentals out of 30 points:
-Earnings/Quality (12 pts) — P/E, P/B, ROE comparisons
-Dividend/Yield (4 pts) — dividend yield analysis
-Valuation vs Benchmarks (12 pts) — how ETFs stack up against S&P 500 averages (P/E of 22, P/B of 4, ROE of 13%)
+qa_pairs.json: 30 questions with ground truth answers
+receive.py: Sends questions to agent, extracts numeric answers, compares to ground truth
+Output: Results logged to evaluation.log, final score printed to screen
 
-15 questions total, 2 points each.
-
-White Agent is under construction: 
-White Agent Outline
-Role: Evaluator/Judge
-What it does:
-
-Loads ground truth answers (from scorer.py logic)
-Connects to green Finance Agent on port 9009
-Asks all 15 questions one by one
-Compares each answer to ground truth
